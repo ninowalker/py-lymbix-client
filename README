@@ -2,15 +2,29 @@
 
 Lymbix is an easy to use wrapper for the Lymbix Tone API service to tonalize a phrase or passage.
 
-To install the python Lymbix client see command below:
+To install the python Lymbix client from pypi:
 
   easy_install lymbix
+  
+To install from source:
 
-It is possible to tonalize a phrase like:
+  python setup.py install
+
+These will create a command "lymbix-test-cli" on your path, invokable as follows:
+
+  lymbix-test-cli __your_api_key_here__ "Colorless green ideas sleep furiously."
+
+The client will look for LYMBIX_API_KEY in your environment:
+
+  export LYMBIX_API_KEY=...
+  lymbix-test-cli "I like milk."
+
+From code: it is possible to tonalize a phrase like:
 
   import lymbix
-  client = lymbix.Client(authentication_key)
-  client.tonalize("I like ruby.")
+  client = lymbix.Client(__your_api_key_here__)
+  client.tonalize("I prefer python. Whitespace makes me happy.")
+
 
 
 To be able to access this resource - please go to <a href="http://www.lymbix.com">Lymbix.com</a> and create an account. You need to agree to the licensing terms, and your account needs to be approved. Once approved, you will be able to get your authentication key.

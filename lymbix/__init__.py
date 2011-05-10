@@ -145,7 +145,7 @@ class Request(object):
         
         return data
 
-if __name__ == '__main__':
+def test_main():
     import sys
     import os
     import pprint
@@ -163,3 +163,6 @@ if __name__ == '__main__':
     
     c = Client(api_key)
     pprint.pprint(c.tonalize(data))
+
+if __name__ == '__main__':
+    test_main()

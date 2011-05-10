@@ -14,6 +14,7 @@ setup(name='lymbix',
       url = "https://github.com/ninowalker/py-lymbix-client",
       packages=['lymbix'],
       long_description=read('README'),
+      entry_points= {'console_scripts': ['lymbix-test-cli=lymbix:test_main']},
       classifiers=[
         "Development Status :: 3 - Alpha",
         "License :: OSI Approved :: BSD License",
