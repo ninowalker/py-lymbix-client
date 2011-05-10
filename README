@@ -1,0 +1,28 @@
+= Lymbix
+
+Lymbix is an easy to use wrapper for the Lymbix Tone API service to tonalize a phrase or passage.
+
+To install the python Lymbix client see command below:
+
+  easy_install lymbix
+
+It is possible to tonalize a phrase like:
+
+  import lymbix
+  client = lymbix.Client(authentication_key)
+  client.tonalize("I like ruby.")
+
+
+To be able to access this resource - please go to <a href="http://www.lymbix.com">Lymbix.com</a> and create an account. You need to agree to the licensing terms, and your account needs to be approved. Once approved, you will be able to get your authentication key.
+
+Note: The Lymbix gem requires python > 2.5
+
+== Authors and credits
+
+Authors::                Nino Walker
+
+Modeled after the Lymbix ruby gem, v0.4.4
+
+== License
+
+BSD
