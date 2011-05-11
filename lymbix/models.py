@@ -29,7 +29,8 @@ class LymbixScoreManager(Manager):
         
     def _create_item(self, data, item_pk):
         obj = LymbixScore(reference_id = item_pk,
-                          sentiment = data.get('article_sentiment',{}).get('score',0))
+                          sentiment = data.get('article_sentiment',{}).get('score',0),
+                          dominant_emotion = data.get('dominant_emotion'))
         for metric in LYMBIX_METRICS:
             setattr(obj, metric, data.get(metric))
         return obj
