@@ -10,7 +10,6 @@ LYMBIX_METRICS = ['affection_friendliness',
                   'clarity',
                   'contentment_gratitude',
                   'coverage',
-                  'dominant_emotion',
                   'enjoyment_elation',
                   'fear_uneasiness',
                   'humiliation_shame',
@@ -21,13 +20,13 @@ class LymbixScoreManager(Manager):
     
     def score_item(self, content, item_int_pk, save=True):
         data = self._client().tonalize(content, item_int_pk)
-        obj = self._create_item(data)
+        obj = self._create_item(data, item_int_pk)
         if save:
             obj.save()
         return obj        
         
-    def _create_item(self, data):
-        obj = LymbixScore(reference_id = data.get('reference_id'),
+    def _create_item(self, data, item_pk):
+        obj = LymbixScore(reference_id = item_pk,
                           sentiment = data.get('article_sentiment',{}).get('score',0))
         for metric in LYMBIX_METRICS:
             setattr(obj, metric, data.get(metric))
@@ -50,7 +49,7 @@ class LymbixScoreManager(Manager):
                     raise AttributeError("settings value for LYMBIX_CLIENT_FACTORY_FUNCTION "
                                          " does not reference callable function or string reference to a module and function; e.g. a.b.function")
                 assert isinstance(self.CLIENT, Client), "Client initialization function did not create an instance of lymbix.Client: %s" % type(self.CLIENT)
- 
+        return self.CLIENT
                         
 
 class LymbixScore(models.Model):
@@ -61,12 +60,12 @@ class LymbixScore(models.Model):
     clarity = FloatField()
     contentment_gratitude = FloatField()
     coverage = FloatField()
-    dominant_emotion = FloatField()
     enjoyment_elation = FloatField()
     fear_uneasiness = FloatField()
     humiliation_shame = FloatField()
     sadness_grief = FloatField()
 
+    dominant_emotion = CharField(max_length=24)
     sentiment = FloatField()
     reference_id = IntegerField(db_index=True)
 
