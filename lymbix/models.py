@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Model, FloatField, Manager
+from django.db.models import Model, FloatField, IntegerField, Manager
 from django.conf import settings
 from lymbix import Client
 
