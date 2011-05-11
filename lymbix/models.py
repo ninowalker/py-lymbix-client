@@ -1,7 +1,9 @@
 from django.db import models
-from django.db.models import Model, FloatField, IntegerField, Manager
+from django.db.models import Model, FloatField, IntegerField, CharField, Manager
 from django.conf import settings
 from lymbix import Client
+
+__ALL__ = ['LymbixScore']
 
 LYMBIX_METRICS = ['affection_friendliness',
                   'amusement_excitement',
