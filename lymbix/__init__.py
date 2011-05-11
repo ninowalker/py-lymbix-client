@@ -114,7 +114,7 @@ class Request(object):
             raise ValueError("Unable to format data type for transmission: %s" % type(self.data))
             
         req = urllib2.Request(self.url, data, self.headers)
-        print data
+        
         try:
             response = urllib2.urlopen(req, timeout=self.timeout)
         except IOError, e:
